@@ -7,6 +7,8 @@ import hpp from "hpp";
 import helmet from "helmet";
 import passport from "passport";
 
+import { sequelize } from "./models";
+
 dotenv.config();
 
 const app = express();
@@ -14,14 +16,14 @@ const prod: boolean = process.env.NODE_ENV === "production";
 
 app.set("port", prod ? process.env.PORT : 80);
 // passportConfig();
-// sequelize
-//   .sync({ force: false })
-//   .then(() => {
-//     console.log("데이터베이스 연결 성공");
-//   })
-//   .catch((err: Error) => {
-//     console.error(err);
-//   });
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("데이터베이스 연결 성공");
+  })
+  .catch((err: Error) => {
+    console.error(err);
+  });
 
 if (prod) {
   app.use(hpp());
