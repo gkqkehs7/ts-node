@@ -1,8 +1,19 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
     "strict": true,
     "lib": ["es2015", "es2016", "es2017", "es2018", "es2019", "es2022"],
     "moduleResolution": "node",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "typeRoots": ["./types"]
+    // nodemodules안에 types안에 들어있는 모든 type을 가져옴
+    // 이거 설정하면, 여기 설정한 것들 가져옴
   }
+  // "files": ["./index.ts", "./types/index.ts"] // 원래는 typescript가 컴파일 할때 프로젝트 폴더에 들어있는 모든 ts파일들을 compile한다
+  // 근데 이 files옵션 붙혀주면 적어준 파일만 compile한다. index.ts만 적어준다해서 index.ts만 컴파일 하는것은 아니고,
+  // index.ts가 import하는 애들은 모두 컴파일 한다.
+
+  // 따라서 types/index.ts는 컴파일 하지 않는다.
 }
