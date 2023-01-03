@@ -7,7 +7,7 @@
     "lib": ["es2015", "es2016", "es2017", "es2018", "es2019", "es2022"],
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "typeRoots": ["./types"]
+    "typeRoots": ["./types", "./node_modules/@types"]
     // nodemodules안에 types안에 들어있는 모든 type을 가져옴
     // 이거 설정하면, 여기 설정한 것들 가져옴
   }

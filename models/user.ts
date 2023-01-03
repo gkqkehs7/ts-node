@@ -4,7 +4,7 @@ import { dbType } from "./index"; // 여기는 순환참조 지만, 문제가 �
 // type을 순환참조하는 것은 문제가 되지 않는다.
 import { sequelize } from "./sequelize"; // 이 부분 떄문에 index.js에서 sequelize객체를 만드는 부분을 뺴주어야한다
 
-class User extends Model {
+class AUser extends Model {
   public readonly id!: number;
   public nickname!: string;
   public userId!: string;
@@ -13,7 +13,7 @@ class User extends Model {
   public readonly updatedAt!: Date;
 }
 
-User.init(
+AUser.init(
   {
     email: {
       type: DataTypes.STRING(50),
@@ -60,4 +60,4 @@ export const associate = (db: dbType) => {
   });
 };
 
-export default User;
+export default AUser;

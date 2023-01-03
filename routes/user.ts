@@ -6,12 +6,10 @@ import { isLoggedIn, isNotLoggedIn } from "./middleware";
 import User from "../models/user";
 const router = express.Router();
 
-// get함수에 들어있기떄문에, 여기서 req, res는 타입을 설정하지 않아도 된다.
 router.get("/", isLoggedIn, (req, res) => {
-  // isLoggedIn을 통과할면 무조건 req.user가 잇어야하지만 ts는 알아차리지 못함
-  const user = req.user;
-  delete user.password;
-  return res.json(user);
+  const user = req.decodeuser;
+  const session = req.secret;
+  console.log(user?.password);
 });
 
 router.post("/login", isNotLoggedIn, (req, res, next) => {
@@ -39,9 +37,9 @@ router.post("/login", isNotLoggedIn, (req, res, next) => {
   )(req, res, next);
 });
 
-router.post("/logout", isLoggedIn, (req, res) => {
-  req.logout();
-  req.session!.destroy(() => {
-    res.send("logout 성공");
-  });
-});
+// router.post("/logout", isLoggedIn, (req, res) => {
+//   req.logout();
+//   req.session!.destroy(() => {
+//     res.send("logout 성공");
+//   });
+// });

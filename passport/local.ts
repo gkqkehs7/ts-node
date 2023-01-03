@@ -11,6 +11,8 @@ export default () => {
       {
         usernameField: "userId",
         passwordField: "password",
+        session: false,
+        passReqToCallback: false,
       },
       async (userId, password, done) => {
         try {
@@ -27,7 +29,7 @@ export default () => {
           return done(null, false, { message: "비밀번호가 틀립니다." });
         } catch (err) {
           console.error(err);
-          return done(err);
+          return done(err as Error);
         }
       }
     )
